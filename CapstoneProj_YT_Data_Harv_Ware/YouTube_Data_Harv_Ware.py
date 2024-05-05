@@ -56,13 +56,15 @@ def video_ids(channel_id):
     video_ids=[]
     next_page_token=None
 
-    response_2 = youtube.playlistItems().list(
-        part="snippet",
-        playlistId= Playlist_ID,
-        maxResults=50,
-        pageToken=next_page_token).execute()
-
     while True:
+
+        
+        response_2 = youtube.playlistItems().list(
+            part="snippet",
+            playlistId= Playlist_ID,
+            maxResults=50,
+            pageToken=next_page_token).execute()
+        
         for i in range(len(response_2['items'])):
             video_ids.append(response_2['items'][i]['snippet']['resourceId']['videoId'])
 
